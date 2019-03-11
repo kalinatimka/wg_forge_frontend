@@ -3,6 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>WG Forge Test</title>
+    <style>
+        table {
+            width: 100%;
+            text-align: center;
+            border-spacing: 0;
+        }
+        th, td {
+            border: 1px solid #000000;
+        }
+        p {
+            margin: 0;
+        }
+        .user-details {
+            display: block;
+        }
+        .user-details--hide {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -26,12 +45,20 @@
     <template id="row_template" style="display: none;">
         <tr id="order_11">
             <td>8292e007-4682-idkfa-a404-eed9662fa5cc</td>
-            <td class="user_data"><a href="#">15</a></td>
+            <td class="user_data">
+                <a href="#" class="user_toggle-link">15</a>
+                <div class="user-details user-details--hide">
+                    <p class="user_birthday">Birthday: 01/02/1991</p>
+                    <p class="user_image"><img src="" width="100px"></p>
+                    <p class="user_company">Company: <a href="http://awesome.website" target="_blank">Bumbershoot Corp.</a></p>
+                    <p class="user_industry">Industry: Apparel / Consumer Services</p>
+                </div>
+            </td>
             <td>21/12/2017, 1:13:47 AM</td>
             <td>$453.47</td>
             <td>30********4733</td>
             <td>diners-club-carte-blanche</td>
-            <td>IS (211.145.96.59)<td>
+            <td>IS (211.145.96.59)</td>
         </tr>
     </template>
 </body>
