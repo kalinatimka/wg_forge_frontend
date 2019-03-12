@@ -115,16 +115,123 @@ export default (function () {
         } else {
             row.querySelector('.user_company').remove();
             row.querySelector('.user_industry').remove();
-            
         }
+    }
+
+    var clearTbody = function () {
+        var allRows = tbody.querySelectorAll('tr');
+        allRows.forEach(function (row) {
+            tbody.removeChild(row);
+        });
+    }
+
+    var addArrow = function (node) {
+        var span = document.createElement('span');
+        span.innerHTML = '&#8595;';
+        node.appendChild(span);
+    }
+
+    var deleteArrow = function () {
+        var aa = document.querySelectorAll('.sort');
+        aa.forEach(function (row) {
+            console.log(row);
+            var bb = row.querySelector('span');
+            console.log(bb);
+            if (bb != null) {
+                row.removeChild(bb);
+            }
+            // 
+        });
+    } 
+    
+    var sortStringElem = function (obj, prop) {
+        var objCopy = obj.slice();
+        objCopy.sort(function (left, right) {
+            if (left[prop] > right[prop]) {
+                return 1;
+            } else if (left[prop] < right[prop]) {
+                return -1;
+            } else {
+                return 0;
+            }
+        });
+        clearTbody();
+        return objCopy;
+    }
+
+    var sortElem = function (obj, prop) {
+        var objCopy = obj.slice();
+        objCopy.sort(function (left, right) {
+            return left[prop] - right[prop];
+        });
+        clearTbody();
+        return objCopy;
+    }
+
+    var sortForLocation = function (obj, prop1, prop2) {
+        var objCopy = obj.slice();
+        objCopy.sort(function (left, right) {
+            if ((left[prop1] + left[prop2]) > (right[prop1] + left[prop2])) {
+                return 1;
+            } else if ((left[prop1] + left[prop2]) < (right[prop1] + left[prop2])) {
+                return -1;
+            } else {
+                return 0;
+            }
+        });
+        clearTbody();
+        return objCopy;
     }
 
     renderRows(orders);
 
-    // link.addEventListener('click', function (e) {
-    //     e.preventDefault();
-    //     console.log('fff');
-    //     userDetails.classList.toggle('user-details--hide');
-    // })
+    var transactionSortLink = document.querySelector('.sort_by-transaction');
+    var amountSortLink = document.querySelector('.sort_by-amount');
+    var dateSortLink = document.querySelector('.sort_by-date');
+    var cardSortLink = document.querySelector('.sort_by-card');
+    var locationSortLink = document.querySelector('.sort_by-location');
 
+    transactionSortLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        deleteArrow();
+        addArrow(transactionSortLink);
+        renderRows(sortStringElem(orders, 'transaction_id'));
+    })
+
+    dateSortLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        deleteArrow();
+        addArrow(dateSortLink);
+        renderRows(sortElem(orders, 'created_at'));
+    })
+
+    amountSortLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        deleteArrow();
+        addArrow(amountSortLink);
+        // orderSortLink.innerHTML += '<span>&#8595;</span>';
+        renderRows(sortElem(orders, 'total'));
+    });
+
+    cardSortLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        deleteArrow();
+        addArrow(cardSortLink);
+        renderRows(sortStringElem(orders, 'card_type'));
+    });
+
+    cardSortLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        deleteArrow();
+        addArrow(cardSortLink);
+        renderRows(sortStringElem(orders, 'card_type'));
+    });
+
+    locationSortLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        deleteArrow();
+        addArrow(locationSortLink);
+        var sortedArr =  sortForLocation(orders, 'order_country', 'order_ip');
+        renderRows(sortedArr);
+    });
 }());

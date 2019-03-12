@@ -21,6 +21,9 @@
         .user-details--hide {
             display: none;
         }
+        .sort {
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -28,13 +31,13 @@
         <table>
             <thead>
                 <tr>
-                    <th>Transaction ID</th>
-                    <th>User Info</th>
-                    <th>Order Date</th>
-                    <th>Order Amount</th>
+                    <th class="sort sort_by-transaction">Transaction ID</th>
+                    <th class="sort sort_by-user">User Info</th>
+                    <th class="sort sort_by-date">Order Date</th>
+                    <th class="sort sort_by-amount">Order Amount</th>
                     <th>Card Number</th>
-                    <th>Card Type</th>
-                    <th>Location</th>
+                    <th class="sort sort_by-card">Card Type</th>
+                    <th class="sort sort_by-location">Location</th>
                 </tr>
             </thead>
             <tbody>
@@ -61,5 +64,31 @@
             <td>IS (211.145.96.59)</td>
         </tr>
     </template>
+    <!-- <template id="statistic_template">
+        <tr>
+            <td>Orders Count</td>
+            <td class="statistic_count">11</td>
+        </tr>
+        <tr>
+            <td>Orders Total</td>
+            <td class="statistic_orders">$ 6722.72</td>
+        </tr>
+        <tr>
+            <td>Median Value</td>
+            <td class="statistic_value">$ 593.72</td>
+        </tr>
+        <tr>
+            <td>Average Check</td>
+            <td class="statistic_check">$ 611.16</td>
+        </tr>
+        <tr>
+            <td>Average Check (Female)</td>
+            <td class="statistic_check--female">$ 395.18</td>
+        </tr>
+        <tr>
+            <td>Average Check (Male)</td>
+            <td class="statistic_check--male">$ 692.15</td>
+        </tr>
+    </template> -->
 </body>
 </html>
